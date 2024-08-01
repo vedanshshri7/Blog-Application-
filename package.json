@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" :"nodemon server.js"
-
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,11 @@
   "author": "Vedansh Shrivastava",
   "license": "ISC",
   "dependencies": {
+    "body": "^5.1.0",
+    "body-parser": "^1.20.2",
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "mongoose": "^8.5.2",
+    "nodemon": "^3.1.4",
+    "parser": "^0.1.4"
   }
 }
