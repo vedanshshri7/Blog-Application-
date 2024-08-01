@@ -51,7 +51,7 @@ router.get('/',checkAuth,(req,res)=>{
   .catch(err=>{
     console.log(err)
     res.status(500).json({
-      error:TypeError
+      error:err
     })
   })
 })
@@ -86,6 +86,42 @@ router.delete('/:id',(req,res)=>{
       error : err
     })
   })
+})
+
+
+////Update
+
+router.put('/:id',checkAuth,(req,res)=>{
+  const token = req.headers.authorization.split(" ")[1]
+  const verify =  jwt.verify(token,'ved 147')
+  console.log(verify)
+
+  Category.find({_id:req.params.id,userId:verify.userId})
+    .then(result=>{
+      if(result.length == 0){
+        return res.status(400).json({
+          msg:'something is wrong'
+        })
+      }
+      Category.findOneAndUpdate({_id:req.params.id,userId:verify.userId},{
+        $set:{
+          userId:verify.userId,
+          title:req.body.title,
+          imageUrl:req.body.imageUrl
+        }
+      })
+        .then(result=>{
+          res.status(200).json({
+            msh:result
+          })
+        })
+        .catch(err=>{
+          console.log(err)
+          res.status(500).json({
+            error : err
+          })
+        })
+      })
 })
 
 module.exports = router
