@@ -8,7 +8,7 @@ const userRoute = require('../Blog Application/routes/user')
 
 
 
-// const catRoute = require('../Blog Application/routes/category')
+const catRoute = require('../Blog Application/routes/category')
 // const blogRoute = require('../Blog Application/routes/blog')
 // const commentRoute = require('../Blog Application/routes/comment')
 
@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://Vedansh7:VedanshVedansh@blogapplication.nddynln.
 app.use(bodyParser.json())
 
 app.use('/user',userRoute)
-// app.use('/category',catRoute)
+app.use('/category',catRoute)
 // app.use('/blog',blogRoute)
 // app.use('/comment',commentRoute)
 module.exports = app
