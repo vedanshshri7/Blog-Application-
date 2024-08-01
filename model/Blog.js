@@ -10,6 +10,8 @@ const blogSchema = new mongoose.Schema({
   categoryId: {type:String,required:true},
   blogDetail: {type:String,required:true},
   userName: {type:String,required:true},
+  createdAt: {type:Date,default:Date.now()}
+  
 
 })
 

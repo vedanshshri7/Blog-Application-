@@ -59,7 +59,7 @@ router.get('/',checkAuth,(req,res)=>{
 
 ///delete category
 
-router.delete('/:id',(req,res)=>{
+router.delete('/:id',checkAuth,(req,res)=>{
 
   const token = req.headers.authorization.split(" ")[1]
   const verify =  jwt.verify(token,'ved 147')
@@ -112,7 +112,7 @@ router.put('/:id',checkAuth,(req,res)=>{
       })
         .then(result=>{
           res.status(200).json({
-            msh:result
+            msg:result
           })
         })
         .catch(err=>{
