@@ -57,6 +57,37 @@ router.get('/',checkAuth,(req,res)=>{
 })
 
 
+///delete category
+
+router.delete('/:id',(req,res)=>{
+
+  const token = req.headers.authorization.split(" ")[1]
+  const verify =  jwt.verify(token,'ved 147')
+  console.log(verify)
+
+  Category.deleteOne({_id:req.params.id,userId:verify.userId})
+  .then(result=>{
+    if(result.deletedCount == 0){
+      return res.status(401).json({
+        msg: 'something is wrong'
+      })
+    }
+    res.status(500).json({
+      error : err
+    })
+    res.status(200).json({
+      msg : 'deleted success'
+    })
+    
+  })
+  .catch(err=>{
+    console.log(err)
+    res.status(500).json({
+      error : err
+    })
+  })
+})
+
 module.exports = router
 
 
